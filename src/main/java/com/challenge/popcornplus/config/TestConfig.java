@@ -1,5 +1,6 @@
 package com.challenge.popcornplus.config;
 
+import com.challenge.popcornplus.dto.MovieDTO;
 import com.challenge.popcornplus.entities.Comment;
 import com.challenge.popcornplus.entities.Movie;
 import com.challenge.popcornplus.entities.User;

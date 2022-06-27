@@ -34,7 +34,10 @@ public class Movie implements Serializable {
     @OneToMany(mappedBy = "movie")
     private List<Comment> commentList = new ArrayList<>();
 
-    public Movie(Integer id, String title, Integer releaseDate, Integer popcornPlusScore) {
+    public Movie(Integer id,
+                 String title,
+                 Integer releaseDate,
+                 Integer popcornPlusScore) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
