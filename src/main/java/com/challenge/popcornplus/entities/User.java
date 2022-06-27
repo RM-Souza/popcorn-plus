@@ -1,5 +1,7 @@
 package com.challenge.popcornplus.entities;
 
+import com.challenge.popcornplus.entities.enums.UserRanking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,15 +29,28 @@ public class User implements Serializable {
     private Integer id;
     private String nickname;
     private String email;
-    private Integer ranking;
-    private Integer score;
+    private String ranking = UserRanking.READER.getUserRanking();
+    private Integer score = 0;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Comment> commentList = new ArrayList<>();
 
-    public User(Integer id, String nickname, String email, Integer ranking, Integer score) {
+    public User(Integer id, String nickname, String email) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
-        this.ranking = ranking;
-        this.score = score;
+    }
+
+    //constructor for update
+    public User(Integer id, UserRanking userRanking) {
+        this.id = id;
+        setUserRanking(userRanking);
+    }
+
+    public void setUserRanking(UserRanking userRanking){
+        if (userRanking != null) {
+            this.ranking = userRanking.getUserRanking();
+        }
     }
 }
