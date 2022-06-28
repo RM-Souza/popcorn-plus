@@ -9,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,8 +40,16 @@ public class Comment implements Serializable {
     @JoinColumn(name = "client_id")
     private User user;
 
+    @OneToMany(mappedBy = "answersId")
+    private List<Comment> replies = new ArrayList<>();
 
-    public Comment(Integer myStarScore, String description, Integer thumbsUp, Integer thumbsDown, Movie movie, User user) {
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "reply_id")
+    private Comment answersId;
+
+    public Comment(Integer myStarScore, String description, Integer thumbsUp,
+                   Integer thumbsDown, Movie movie, User user) {
         this.myStarScore = myStarScore;
         this.description = description;
         this.thumbsUp = thumbsUp;
@@ -47,4 +57,15 @@ public class Comment implements Serializable {
         this.movie = movie;
         this.user = user;
     }
+
+    public Comment(String description, Integer thumbsUp, Integer thumbsDown,
+                   Movie movie, User user, Comment answersId) {
+        this.description = description;
+        this.thumbsUp = thumbsUp;
+        this.thumbsDown = thumbsDown;
+        this.movie = movie;
+        this.user = user;
+        this.answersId = answersId;
+    }
+
 }

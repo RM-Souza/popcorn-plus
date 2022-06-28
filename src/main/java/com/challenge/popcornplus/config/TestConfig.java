@@ -33,8 +33,10 @@ public class TestConfig implements CommandLineRunner {
 
         User u1 = new User(null, "bb8", "bb8@gmail.com");
         User u2 = new User(null, "r2d2", "r2d2@gmail.com");
+        User u3 = new User(null, "c3po", "c3po@gmail.com");
+        User u4 = new User(null, "xlr8", "xlr8@gmail.com");
 
-        userRepository.saveAll(Arrays.asList(u1, u2));
+        userRepository.saveAll(Arrays.asList(u1, u2, u3, u4));
 
         Movie m1 = new Movie(null,"Star Wars - Episode IV",1977,10);
         Movie m2 = new Movie(null, "Star Wars - Episode IX",2019,20);
@@ -44,6 +46,9 @@ public class TestConfig implements CommandLineRunner {
         Comment c1 = new Comment(5,"Great Movie!", 2, 1, m1, u1);
         Comment c2 = new Comment(2,"Bad Movie!", 3, 3, m2, u2);
 
-        commentRepository.saveAll(Arrays.asList(c1, c2));
+        Comment r1 = new Comment("I agree!", 2, 1, m1, u3, c1);
+        Comment r2 = new Comment("Really?", 3, 3, m2, u4, c2);
+
+        commentRepository.saveAll(Arrays.asList(c1, c2, r1, r2));
     }
 }
