@@ -35,9 +35,9 @@ public class User implements Serializable {
     @JsonProperty("Email")
     private String email;
     @JsonProperty("Ranking")
-    private String ranking = UserRanking.READER.getUserRanking();
+    private String ranking;
     @JsonProperty("Score")
-    private Double score;
+    private Integer score;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -51,17 +51,12 @@ public class User implements Serializable {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
-    }
-
-    //constructor for update
-    public User(Integer id, UserRanking userRanking) {
-        this.id = id;
-        setUserRanking(userRanking);
+        setUserRanking(UserRanking.READER);
     }
 
     public void setUserRanking(UserRanking userRanking) {
         if (userRanking != null) {
-            this.ranking = userRanking.getUserRanking();
+            this.ranking = UserRanking.READER.getUserRanking();
         }
     }
 }
