@@ -29,18 +29,31 @@ public class Movie implements Serializable {
     private Integer id;
     private String title;
     private Integer releaseDate;
-    private Integer popcornPlusScore;
 
     @OneToMany(mappedBy = "movie")
     private List<Comment> commentList = new ArrayList<>();
 
-    public Movie(Integer id,
-                 String title,
-                 Integer releaseDate,
-                 Integer popcornPlusScore) {
+    public Movie(Integer id, String title,
+                 Integer releaseDate) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
-        this.popcornPlusScore = popcornPlusScore;
+    }
+
+    @JsonIgnore
+    public Integer getCommentsNumber() {
+        int i = 0;
+        for (Comment c : commentList) {
+            i++;
+        }
+        return i;
+    }
+
+    public Double getMovieScore() {
+        double avg = 0.0;
+        for (Comment c : commentList) {
+             avg += c.getMyStarScore();
+        }
+        return avg / commentList.size();
     }
 }

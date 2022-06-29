@@ -17,14 +17,15 @@ public class MovieDTO implements Serializable {
 
     private Integer id;
     private String title;
-    private Integer releaseDate;
-    private Integer popcornPlusScore;
+    private Integer year;
+    private Double movieScore;
+    private Integer comments;
 
     public MovieDTO(Movie movie) {
         id = movie.getId();
         title = movie.getTitle();
-        releaseDate = movie.getReleaseDate();
-        popcornPlusScore = movie.getPopcornPlusScore();
+        year = movie.getReleaseDate();
+        movieScore = movie.getMovieScore();
+        comments = movie.getCommentsNumber();
     }
-
 }

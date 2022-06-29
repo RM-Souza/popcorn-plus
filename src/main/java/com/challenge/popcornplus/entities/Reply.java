@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -18,36 +17,33 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "tb_comment")
-public class Comment implements Serializable {
-
+@Table(name = "tb_reply")
+public class Reply implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idReply;
     private String description;
     private Integer thumbsUp;
     private Integer thumbsDown;
-    private Integer myStarScore;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+    @JoinColumn(name = "reply_id")
+    private Comment replyId;
+
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User user;
+    @JoinColumn(name = "userReplies_id")
+    private User userReply;
 
-    public Comment(Integer myStarScore, String description, Integer thumbsUp,
-                   Integer thumbsDown, Movie movie, User user) {
-        this.myStarScore = myStarScore;
+    public Reply(String description, Integer thumbsUp, Integer thumbsDown, Comment replyId, User userReply) {
         this.description = description;
         this.thumbsUp = thumbsUp;
         this.thumbsDown = thumbsDown;
-        this.movie = movie;
-        this.user = user;
+        this.replyId = replyId;
+        this.userReply = userReply;
     }
 }
