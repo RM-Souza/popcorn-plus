@@ -30,11 +30,15 @@ public class User implements Serializable {
     private String nickname;
     private String email;
     private String ranking = UserRanking.READER.getUserRanking();
-    private Integer score = 0;
+    private Double score;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Comment> commentList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userReply")
+    private List<Reply> replyList = new ArrayList<>();
 
     public User(Integer id, String nickname, String email) {
         this.id = id;
@@ -48,7 +52,7 @@ public class User implements Serializable {
         setUserRanking(userRanking);
     }
 
-    public void setUserRanking(UserRanking userRanking){
+    public void setUserRanking(UserRanking userRanking) {
         if (userRanking != null) {
             this.ranking = userRanking.getUserRanking();
         }
