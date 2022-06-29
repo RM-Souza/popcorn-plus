@@ -1,6 +1,7 @@
 package com.challenge.popcornplus.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Getter
 @Setter
@@ -26,10 +24,15 @@ public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("Id")
     private Integer id;
+    @JsonProperty("Description")
     private String description;
+    @JsonProperty("ThumbsUp")
     private Integer thumbsUp;
+    @JsonProperty("ThumbsDown")
     private Integer thumbsDown;
+    @JsonProperty("MyStarScore")
     private Integer myStarScore;
 
     @JsonIgnore
@@ -39,6 +42,7 @@ public class Comment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonProperty("User")
     private User user;
 
     public Comment(Integer myStarScore, String description, Integer thumbsUp,

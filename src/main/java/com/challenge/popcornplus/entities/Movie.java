@@ -1,6 +1,7 @@
 package com.challenge.popcornplus.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,11 @@ public class Movie implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("Id")
     private Integer id;
+    @JsonProperty("Title")
     private String title;
+    @JsonProperty("Year")
     private Integer releaseDate;
 
     @OneToMany(mappedBy = "movie")
