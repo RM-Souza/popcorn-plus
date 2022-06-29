@@ -1,17 +1,18 @@
 package com.challenge.popcornplus.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 
 @Getter
 @Setter
@@ -26,8 +27,11 @@ public class Movie implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("Id")
     private Integer id;
+    @JsonProperty("Title")
     private String title;
+    @JsonProperty("Year")
     private Integer releaseDate;
 
     @OneToMany(mappedBy = "movie")
@@ -42,18 +46,10 @@ public class Movie implements Serializable {
 
     @JsonIgnore
     public Integer getCommentsNumber() {
-        int i = 0;
-        for (Comment c : commentList) {
-            i++;
-        }
-        return i;
+        return commentList.size();
     }
 
-    public Double getMovieScore() {
-        double avg = 0.0;
-        for (Comment c : commentList) {
-             avg += c.getMyStarScore();
-        }
-        return avg / commentList.size();
+    public OptionalDouble getMovieScore() {
+        return commentList.stream().mapToDouble(Comment::getMyStarScore).average();
     }
 }

@@ -2,10 +2,12 @@ package com.challenge.popcornplus.entities;
 
 import com.challenge.popcornplus.entities.enums.UserRanking;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -26,10 +28,15 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("Id")
     private Integer id;
+    @JsonProperty("Nickname")
     private String nickname;
+    @JsonProperty("Email")
     private String email;
+    @JsonProperty("Ranking")
     private String ranking = UserRanking.READER.getUserRanking();
+    @JsonProperty("Score")
     private Double score;
 
     @JsonIgnore
