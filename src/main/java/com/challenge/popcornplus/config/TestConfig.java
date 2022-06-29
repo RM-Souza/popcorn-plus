@@ -49,7 +49,7 @@ public class TestConfig implements CommandLineRunner {
         movieRepository.saveAll(Arrays.asList(m1, m2));
 
         Comment c1 = new Comment(5, "Great Movie! I miss Leia so much :(", 2, 1, m1, u1);
-        Comment c3 = new Comment(3, "My favorite movie too!", 5, 3, m1, u2);
+        Comment c3 = new Comment(4, "My favorite movie too!", 5, 3, m1, u2);
         Comment c2 = new Comment(2, "My favorite movie!", 3, 3, m2, u2);
 
         commentRepository.saveAll(Arrays.asList(c1, c2, c3));

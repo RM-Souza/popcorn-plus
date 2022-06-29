@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.OptionalDouble;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class MovieDTO implements Serializable {
     private Integer id;
     private String title;
     private Integer year;
-    private Double movieScore;
+    private OptionalDouble movieScore;
     private Integer comments;
 
     public MovieDTO(Movie movie) {
