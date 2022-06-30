@@ -30,15 +30,4 @@ public class UserService {
     public User insert(User user) {
         return userRepository.save(user);
     }
-
-    public User update(Integer id, User user) {
-            User entity = userRepository.getReferenceById(id);
-            updateRanking(entity, user);
-            return userRepository.save(entity);
-    }
-
-    //mods only
-    private void updateRanking(User entity, User user) {
-        entity.setUserRanking(UserRanking.getRanking(user.getRanking()));
-    }
 }
