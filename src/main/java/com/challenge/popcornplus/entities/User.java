@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -51,12 +50,6 @@ public class User implements Serializable {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
-    }
-
-    //constructor for update
-    public User(Integer id, UserRanking userRanking) {
-        this.id = id;
-        setUserRanking(userRanking);
     }
 
     public void setUserRanking(UserRanking userRanking) {
