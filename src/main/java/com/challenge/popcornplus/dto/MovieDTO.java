@@ -1,6 +1,8 @@
 package com.challenge.popcornplus.dto;
 
 import com.challenge.popcornplus.entities.Movie;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +21,7 @@ public class MovieDTO implements Serializable {
     private Integer id;
     private String title;
     private Integer year;
+    @JsonProperty("MovieScore")
     private OptionalDouble movieScore;
     private Integer comments;
 

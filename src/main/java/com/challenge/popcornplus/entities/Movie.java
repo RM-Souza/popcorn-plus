@@ -2,6 +2,7 @@ package com.challenge.popcornplus.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,8 @@ import java.util.OptionalDouble;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
+@JsonPropertyOrder({"Id", "Title", "Year", "movieScore",
+        "commentsNumber", "comments"})
 @Entity
 @Table(name = "tb_movie")
 public class Movie implements Serializable {
@@ -35,6 +38,7 @@ public class Movie implements Serializable {
     private Integer releaseDate;
 
     @OneToMany(mappedBy = "movie")
+    @JsonProperty("CommentList")
     private List<Comment> commentList = new ArrayList<>();
 
     public Movie(Integer id, String title,
@@ -44,11 +48,12 @@ public class Movie implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    @JsonIgnore
+    @JsonProperty("NumberOfComments")
     public Integer getCommentsNumber() {
         return commentList.size();
     }
 
+    @JsonProperty("MovieScore")
     public OptionalDouble getMovieScore() {
         return commentList.stream().mapToDouble(Comment::getMyStarScore).average();
     }
