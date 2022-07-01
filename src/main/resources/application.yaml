@@ -1,0 +1,7 @@
+spring:
+  jpa:
+    open-in-view: 'true'
+  banner:
+    location: banner.txt
+  profiles:
+    active: test

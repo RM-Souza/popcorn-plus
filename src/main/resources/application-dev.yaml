@@ -1,0 +1,15 @@
+spring:
+    datasource:
+        username: postgres
+        url: jdbc:postgresql://localhost:5432/popcornplusdb
+        password: '123456'
+    jpa:
+        properties:
+            hibernate:
+                jdbc:
+                    lob:
+                        non_contextual_creation: 'true'
+                format_sql: 'true'
+        hibernate:
+            ddl-auto: update
+        show-sql: 'true'
