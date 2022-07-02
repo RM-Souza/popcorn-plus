@@ -1,13 +1,13 @@
 # Projeto Popcorn+
 
-###Documentação
+### Documentação
 
 Neste deseafio - proporcionado pela Let's Code
 em parceria com o Itaú - foi propost consumir
 uma API pública de filmes salvando no banco de dados
 avaliações, comentários e suas respostas.
 
-####Lista de tecnologias usadas:
+#### Lista de tecnologias usadas:
 - Intellij IDEA
 - Java 17
 - Spring Boot 2.7.1
@@ -15,13 +15,13 @@ avaliações, comentários e suas respostas.
 - PostgresSQL
 - Insomnia (envio de requisições)
 
-###Passo 1: Clone o projeto abaixo
+### Passo 1: Clone o projeto abaixo
 
 ```bash
 git clone git@github.com:RM-Souza/popcorn-plus.git
 ```
 
-###Passo 2: Abra o projeto
+### Passo 2: Abra o projeto
 
 Há dois ambientes: test e dev. No ambiente "test" os
 dados são salvos no H2; já no ambiente de dev, persistidos
@@ -41,8 +41,8 @@ Para alterar o ambiente basta ir em <i>application.yaml</i> e
 alterar o valor da chave para "test" ou "dev", conforme
 sua preferência.
 
-###Requisições GET
-####Filmes:
+### Requisições GET
+#### Filmes:
 ```bash
 localhost:8080/movies
 ```
@@ -72,7 +72,7 @@ O campo "MovieScore" é calculado através da média
 aritmética do campo MyStarScore, dados pelo comentário
 de cada usuário.
 
-####Comentários
+#### Comentários
 
 ```bash
 localhost:8080/comments
@@ -99,7 +99,7 @@ Resposta:
 ]
 ```
 
-###Usuários
+### Usuários
 
 ```bash
 localhost:8080/users
@@ -127,7 +127,7 @@ Resposta:
 ]
 ```
 
-###Requisição POST
+### Requisição POST
 
 Para inserir um usuário novo na base de dados, basta
 enviar, apenas o Nickname e o Email. O Ranking, Score
@@ -155,7 +155,7 @@ Resultado:
 }
 ```
 
-###Requisição DELETE:
+### Requisição DELETE:
 
 ```bash
 localhost:8080/user/{id}
@@ -164,7 +164,7 @@ localhost:8080/user/{id}
 Não corpo na resposta para essa requisição, apenas retornado
 o codigo 204.
 
-###Considerações:
+### Considerações:
 
 Pela complexidade do assunto e por não ter perícia 
 no uso de APIs, o sistema se encontra incompleto. Foi uma oportunidade
@@ -172,4 +172,4 @@ de aprendizado bastante rica e motivante. Sou grato por ter chego até a
 presente etapa. Aceitarei <b>TODO</b> feedback dado e pretendo continuar
 atualizando o repositório mesmo após o término do desafio.
 
-###Obrigado!
+### Obrigado!
